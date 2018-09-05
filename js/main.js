@@ -395,6 +395,7 @@ function addVideo(i,j){
      height: cellHeight,
      width:  cellWidth,
      videoId: youtubeid,
+     playerVars: {rel: 0},// to remove suggested videos
      events: {
        'onReady': onPlayerReady,
        'onStateChange': onPlayerStateChange
