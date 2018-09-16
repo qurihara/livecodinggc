@@ -1,4 +1,5 @@
 var rand = Math.random;
+var floor = Math.floor
 var iter = setInterval;
 var DEBUG = false;
 var markTimestamp = -1;
@@ -395,7 +396,7 @@ function addVideo(i,j){
      height: cellHeight,
      width:  cellWidth,
      videoId: youtubeid,
-     playerVars: {rel: 0},// to remove suggested videos
+     playerVars: {rel: 0, controls: 0, disablekb: 1, showinfo: 0, modestbranding: 1, version: 2},// to remove suggested videos, info, etc.. this funcionality will be disabled by google API from 25th sept 2018
      events: {
        'onReady': onPlayerReady,
        'onStateChange': onPlayerStateChange
@@ -954,4 +955,29 @@ function help() {
  * @param {string} expression - Condition text (e.g. ">3" or "%2==0")
  */
 function _howToSelectVideos() {
+}
+
+
+/////////////////////////////////////////
+// TRANSFORMATIONS
+
+function rotate(list, degree){
+  var selectedVideos =  selectVideos(list);
+  selectedVideos.forEach(function(video){
+    $("#"+video.a.getAttribute('id')+"").css("transform","rotate("+degree+"deg)");
+  });
+}
+
+function flip(list){
+  var selectedVideos =  selectVideos(list);
+  selectedVideos.forEach(function(video){
+    $("#"+video.a.getAttribute('id')+"").css("transform","scaleX(-1)");
+  });
+}
+
+function unflip(list){
+  var selectedVideos =  selectVideos(list);
+  selectedVideos.forEach(function(video){
+    $("#"+video.a.getAttribute('id')+"").css("transform","scaleX(1)");
+  });
 }
