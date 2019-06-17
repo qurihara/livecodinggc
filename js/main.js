@@ -1016,5 +1016,5 @@ console.info("Websocket host url = " +  tWsUrl);
 WS_CLIENTS = createWsClient(tWsUrl, "gamepad");
 
 function send(dsl){
-  WS_CLIENTS.send(dsl);
+  WS_CLIENTS.send(JSON.stringify(dsl));
 }

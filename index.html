@@ -54,23 +54,34 @@
       </div>
 
 <textarea id="code" name="code">
-
 // press shift+enter to run selected code (or each line if not selected)
 // press alt+enter to go to the documentation.
 // here is some example code, run line by line and see what happens.
 
+f = {"dur":2}
+dl = {"dpad":1}
+d = {"dpad":2}
+dr = {"dpad":3}
+l = {"dpad":4}
+n = {"dpad":5}
+r = {"dpad":6}
+ul = {"dpad":7}
+u = {"dpad":8}
+ur = {"dpad":9}
+p = {"btn":[2]}
+
 flip= function()
 {
-	send('[{"cfg_input": {"dpad": 1}}]')
+	send([{"cfg_input": {"dpad": 1}}])
 }
 fire= function()
 {
-	send('[{"dpad":2,"dur":2},{"dpad":1,"dur":2},{"dpad":4,"dur":2},{"btn":[2],"dur":2}]')
+	send([{"dpad":2,"dur":2},{"dpad":1,"dur":2},{"dpad":4,"dur":2},{"btn":[2],"dur":2}])
 }
 
 dpunch= function()
 {
-	send('[{"dpad":4,"dur":2},{"dpad":2,"dur":2},{"dpad":1,"dur":2},{"btn":[2],"dur":2}]')
+	send([{"dpad":4,"dur":2},{"dpad":2,"dur":2},{"dpad":1,"dur":2},{"btn":[2],"dur":2}])
 }
 
 fire()
