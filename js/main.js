@@ -1018,3 +1018,11 @@ WS_CLIENTS = createWsClient(tWsUrl, "gamepad");
 function send(dsl){
   WS_CLIENTS.send(JSON.stringify(dsl));
 }
+function s(dsl){
+  send(dsl);
+}
+function wait(delay) {
+    return new Promise(function(resolve, reject) {
+        setTimeout(resolve, delay);
+    });
+}
