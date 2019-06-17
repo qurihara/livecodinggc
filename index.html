@@ -77,25 +77,24 @@
 
   flip= function()
   {
-  	send([{"cfg_input": {"dpad": 1}}])
+    send([{"cfg_input": {"dpad": 1}}])
   }
   fire= function()
   {
-  	send([d,f,dl,f,l,p1,f])
+    send([d,f,dl,f,l,p1,f])
   }
-
   dpunch= function()
   {
-  	send([l,f,d,f,dl,p1,f])
+    send([l,f,d,f,dl,p1,f])
   }
-
   skick= function()
   {
-  	send([d,f,dr,f,r,k1,f])
+    send([d,f,dr,f,r,k1,f])
   }
 
   fire()
   dpunch()
+  skick()
   flip()
 
 
