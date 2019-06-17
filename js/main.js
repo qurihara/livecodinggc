@@ -925,8 +925,8 @@ function onPlayerStateChange(event) {
       event.target.unMute()
       initialLoading = false;
     }
-    
-  
+
+
   }
   if( event.data == YTSTATE_ENDED){
      event.target.seekTo(0);
@@ -980,4 +980,41 @@ function unflip(list){
   selectedVideos.forEach(function(video){
     $("#"+video.a.getAttribute('id')+"").css("transform","scaleX(1)");
   });
+}
+
+//
+
+function getQueryParam(aQuery, aDefault){
+    const tUrlParams = new URLSearchParams(window.location.search);
+    return (tUrlParams.has(aQuery)) ? tUrlParams.get(aQuery) : aDefault;
+}
+function createWsClient(aUrl, aDev){
+    var tClients = null;
+    tClient = new WebSocket(`${aUrl}/${aDev}`);
+    tClient.onopen = function(e){
+        console.info(`[${aDev}] is online`)
+    };
+    tClient.onerror = function(e){
+        console.info(`[${aDev}] is offline`)
+    };
+	tClient.onmessage = function ( event ) {
+      if (event && event.data) {
+      		console.log(event.data);
+      }
+	}
+    return tClient;
+}
+
+// Create WebSocket clients
+const node_red_server = location.hostname;
+const port = 1880;
+const tWsHost = getQueryParam("wshost", node_red_server);
+const tWsPort = getQueryParam("wsport", port);
+const tWsUrl = `ws://${tWsHost}:${tWsPort}`;
+console.info("Websocket host url = " +  tWsUrl);
+
+WS_CLIENTS = createWsClient(tWsUrl, "gamepad");
+
+function send(dsl){
+  WS_CLIENTS.send(dsl);
 }
