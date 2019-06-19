@@ -1008,9 +1008,11 @@ function createWsClient(aUrl, aDev){
 // Create WebSocket clients
 const node_red_server = location.hostname;
 const port = 1880;
+const protocol = "ws";
 const tWsHost = getQueryParam("wshost", node_red_server);
 const tWsPort = getQueryParam("wsport", port);
-const tWsUrl = `ws://${tWsHost}:${tWsPort}`;
+const tWsProtocol = getQueryParam("wsprot", protocol);
+const tWsUrl = `${tWsProtocol}://${tWsHost}:${tWsPort}`;
 console.info("Websocket host url = " +  tWsUrl);
 
 WS_CLIENTS = createWsClient(tWsUrl, "gamepad");
