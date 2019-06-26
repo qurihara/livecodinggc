@@ -1,10 +1,16 @@
 $x = async function()
 {
+//  console.log(arguments)
     for(let i = 0; i < arguments.length; i++) {
       	if (Array.isArray(arguments[i]) === true){
-            await $x(arguments[i])
+          for(let j = 0;j < arguments[i].length;j++){
+	            await $x(arguments[i][j])
+          }
         }else{
-          await send(arguments[i])
+          let ary = []
+          ary[0] = arguments[i]
+//          console.log(ary)
+          await send(ary)
         }
     }
 }
@@ -15,7 +21,7 @@ function wait(delay) {
     });
 }
 
-t = function(_t){
+du = function(_t){
       return {"dur":_t};
 }
 
