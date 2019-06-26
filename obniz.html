@@ -83,27 +83,22 @@ k3 = {"btn":[5]}
 k2 = {"btn":[0]}
 k1 = {"btn":[1]}
 
-flip= function()
-{
-  send([{"cfg_input": {"dpad": 1}}])
-}
-fire= function()
-{
-  send([d,f,dr,f,r,p1,f])
-}
-dpunch= function()
-{
-  send([r,f,d,f,dr,p1,f])
-}
-skick= function()
-{
-  send([d,f,dl,f,l,k1,f])
-}
+flip = [{"cfg_input": {"dpad": 1}}]
+fire = [d,f,dr,f,r,p1,f]
+dpunch = [r,f,d,f,dr,p1,f]
+ckick= [d,f,dl,f,l,k1,f]
+//double lariat
+dlari=[{"btn":[2,3,4]},f]
+// ryu combo 1
+combo1= [ur,{"dur":40},k3,{"dur":25},d,k2,{"dur":15},fire]
+//low guard
+lg = [dl,{"dur":-1}]
 
-fire()
-dpunch()
-skick()
-flip()
+$x(fire)
+$x(dpunch)
+$x(ckick)
+$x(flip)
+
 
 
 
