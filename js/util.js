@@ -1,3 +1,8 @@
+function getQueryParam(aQuery, aDefault){
+    const tUrlParams = new URLSearchParams(window.location.search);
+    return (tUrlParams.has(aQuery)) ? tUrlParams.get(aQuery) : aDefault;
+}
+
 $x = async function()
 {
 //  console.log(arguments)
@@ -13,6 +18,10 @@ $x = async function()
           await send(ary)
         }
     }
+}
+
+function s(ary){
+  return send(ary);
 }
 
 function wait(delay) {

@@ -1,13 +1,7 @@
-function s(dsl){
-  send(dsl);
-}
-function wait(delay) {
-    return new Promise(function(resolve, reject) {
-        setTimeout(resolve, delay);
-    });
-}
+const obniz_id = "xxxx-xxxx";
+const oid = getQueryParam("id", obniz_id);
 
-var obniz = new Obniz("xxxx-xxxx");
+var obniz = new Obniz(oid);
 const GcOps = require('./gc-ops').GcOps;
 obniz.onconnect = async function () {
 	obniz.uart0.start({gnd:0, tx: 1, rx: 2});

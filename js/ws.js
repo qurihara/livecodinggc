@@ -1,7 +1,3 @@
-function getQueryParam(aQuery, aDefault){
-    const tUrlParams = new URLSearchParams(window.location.search);
-    return (tUrlParams.has(aQuery)) ? tUrlParams.get(aQuery) : aDefault;
-}
 function createWsClient(aUrl, aDev){
     var tClients = null;
     tClient = new WebSocket(`${aUrl}/${aDev}`);
