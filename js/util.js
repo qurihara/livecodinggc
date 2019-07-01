@@ -47,3 +47,14 @@ bn = function(_b){
     return {"btn":a}
   }
 }
+
+loop = function(dsl,frames){
+  let t = frames / 60 * 1000
+  let id = setInterval(function(){$x(dsl)},t)
+  $x(dsl)
+  return id
+}
+
+unloop = function(id){
+	clearInterval(id)
+}
