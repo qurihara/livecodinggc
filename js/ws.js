@@ -19,13 +19,15 @@ function createWsClient(aUrl, aDev){
 const node_red_server = location.hostname;
 const port = 1880;
 const protocol = "ws";
+const name = "gamepad";
 const tWsHost = getQueryParam("wshost", node_red_server);
 const tWsPort = getQueryParam("wsport", port);
 const tWsProtocol = getQueryParam("wsprot", protocol);
+const tWsName = getQueryParam("wsname", name);
 const tWsUrl = `${tWsProtocol}://${tWsHost}:${tWsPort}`;
 console.info("Websocket host url = " +  tWsUrl);
 
-WS_CLIENTS = createWsClient(tWsUrl, "gamepad");
+WS_CLIENTS = createWsClient(tWsUrl, tWsName);
 
 function send(dsl){
   WS_CLIENTS.send(JSON.stringify(dsl));
