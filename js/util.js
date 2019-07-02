@@ -58,3 +58,8 @@ loop = function(dsl,frames){
 unloop = function(id){
 	clearInterval(id)
 }
+
+$e = async function(player,dsl)
+{
+  send({"player":player,"dsl4gc":dsl})
+}
