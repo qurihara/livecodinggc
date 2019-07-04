@@ -24,9 +24,10 @@ function s(ary){
   return send(ary);
 }
 
-function wait(delay) {
+function wait(frames) {
+    let t = frames / 60 * 1000;
     return new Promise(function(resolve, reject) {
-        setTimeout(resolve, delay);
+        setTimeout(resolve, frames);
     });
 }
 
@@ -57,6 +58,12 @@ loop = function(dsl,frames){
 
 unloop = function(id){
 	clearInterval(id)
+}
+
+repeat = function(dsl, ntimes){
+  let d = [];
+  for(let i = 0; i < ntimes; i++) d.push(dsl)
+  $x(d)
 }
 
 $e = async function(player,dsl)
