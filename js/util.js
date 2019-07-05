@@ -35,11 +35,19 @@ du = function(_t){
       return {"dur":_t};
 }
 
-dp = function(_t){
+f = function(_t){
+  return du(_t);
+}
+
+dpad = function(_t){
       return {"dpad":_t};
 }
 
-bn = function(_b){
+dpadf = function(_t,fr){
+  return [dpad(_t),f(fr)];
+}
+
+btn = function(_b){
   if (Array.isArray(_b) === true){
     return {"btn":_b};
   }else{
@@ -47,6 +55,10 @@ bn = function(_b){
     a[0] = _b;
     return {"btn":a}
   }
+}
+
+btnf = function(_b,fr){
+  return [btn(_b),f(fr)];
 }
 
 loop = function(dsl,frames){
