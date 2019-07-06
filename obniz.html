@@ -65,41 +65,20 @@
 // inspired and folked from https://github.com/paum3/livecodingyoutube2.github.io
 // here is some example code, run line by line and see what happens.
 
-f = {"dur":2}
-dl = {"dpad":1}
-d = {"dpad":2}
-dr = {"dpad":3}
-l = {"dpad":4}
-n = {"dpad":5}
-r = {"dpad":6}
-ul = {"dpad":7}
-u = {"dpad":8}
-ur = {"dpad":9}
 p3 = {"btn":[4]}
 p2 = {"btn":[2]}
 p1 = {"btn":[3]}
 k3 = {"btn":[5]}
 k2 = {"btn":[0]}
 k1 = {"btn":[1]}
-
-flip = [{"cfg_input": {"dpad": 1}}]
-fire = [d,f,dr,f,r,p1,f]
-dpunch = [r,f,d,f,dr,p1,f]
-ckick= [d,f,dl,f,l,k1,f]
-//double lariat
-dlari=[{"btn":[2,3,4]},f]
-// ryu combo 1
-combo1= [ur,{"dur":40},k3,{"dur":25},d,k2,{"dur":15},fire]
-//low guard
-lg = [dl,{"dur":-1}]
-
-$x(fire)
-$x(dpunch)
-$x(ckick)
-$x(flip)
-
-id = loop(dpunch,120)
+$x(faceL = [{"cfg_input": {"dpad": 1}}])
+$x(faceR = [{"cfg_input": {"dpad": 0}}])
+$x([guard = dpadf(1,-1)])
+$x([newtral = dpadf(5,-1)])
+$x(hado = [dpadf(2,2),dpadf(3,2),dpadf(6,2),btnf(4,2)])
+id = loop(hado, 120)
 unloop(id)
+$x(combo1= [dpad(9),f(40),btn(5),f(25),dpad(2),btn(0),f(5),hado])
 
 
 </textarea>
