@@ -61,23 +61,26 @@
 // inspired and folked from https://github.com/paum3/livecodingyoutube2.github.io
 // here is some example code, run line by line and see what happens.
 
-p3 = {"btn":[4]}
-p2 = {"btn":[2]}
-p1 = {"btn":[3]}
-k3 = {"btn":[5]}
-k2 = {"btn":[0]}
-k1 = {"btn":[1]}
+p1 = btn(3)
+p2 = btn(2)
+p3 = btn(4)
+k1 = btn(1)
+k2 = btn(0)
+k3 = btn(5)
 $x(faceL = [{"cfg_input": {"dpad": 1}}])
 $x(faceR = [{"cfg_input": {"dpad": 0}}])
 $x(guard = [dpadf(1,-1)])
 $x(neutral = [dpadf(5,-1)])
+//Ryu
 $x(hado = [dpadf(2,2),dpadf(3,2),dpadf(6,2),btnf(4,2)])
 id = loop(hado, 60)
 unloop(id)
 $x(combo1= [dpad(9),f(40),btn(5),f(25),dpad(2),btn(0),f(5),hado])
+//Guile
 $x(sonic = [dpad(6),btnf(4,2)])
 $x(summer = [dpad(8),btnf(5,2)])
-
+$x(wait_guile = [sonic, f(100),summer,f(100)])
+id = loop(wait_guile,300)
 
 
 </textarea>
