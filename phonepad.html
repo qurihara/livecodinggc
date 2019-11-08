@@ -3,13 +3,11 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-  <script type="text/javascript" src="https://gamecontrollerizer.github.io/GcOpsObniz/gc-ops_browser.js"  crossorigin="anonymous"></script>
   <script src="./js/util.js"></script>
   <script src="./js/ws.js"></script>
 </head>
 <body style="-webkit-touch-callout:none;-webkit-user-select:none;">
 
-<div id="obniz-debug"></div>
 <h3>GameControllerizer phone-pad</h3>
 tilt used as:
   <input id="dpad" type="radio" name="tilt" value="dpad" >dpad
@@ -49,7 +47,7 @@ tilt orientation:
 
 <script>
 var fps = 10;
-const GcOps = require('./gc-ops').GcOps;
+//const GcOps = require('./gc-ops').GcOps;
 
 /* forbid enlarging by double-taps */
 var t = 0;
@@ -266,15 +264,15 @@ $(function(){
   window.addEventListener("deviceorientation", deviceorientationHandler);
 });
 
-function send(gc_sentence){
-  // let binary_sentence = [];
-  // let total_bytes = 0;
-  // for (let gc_word of gc_sentence){
-  //   var bytes = GcOps.toBytes(gc_word);
-	// 	binary_sentence = binary_sentence.concat(Array.from(bytes));
-  // }
-  send(gc_sentence);
-}
+// function send(gc_sentence){
+//   // let binary_sentence = [];
+//   // let total_bytes = 0;
+//   // for (let gc_word of gc_sentence){
+//   //   var bytes = GcOps.toBytes(gc_word);
+// 	// 	binary_sentence = binary_sentence.concat(Array.from(bytes));
+//   // }
+//   send(gc_sentence);
+// }
 
 </script>
 </body>
