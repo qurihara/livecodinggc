@@ -1,0 +1,281 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script type="text/javascript" src="https://gamecontrollerizer.github.io/GcOpsObniz/gc-ops_browser.js"  crossorigin="anonymous"></script>
+  <script src="./js/util.js"></script>
+  <script src="./js/ws.js"></script>
+</head>
+<body style="-webkit-touch-callout:none;-webkit-user-select:none;">
+
+<div id="obniz-debug"></div>
+<h3>GameControllerizer phone-pad</h3>
+tilt used as:
+  <input id="dpad" type="radio" name="tilt" value="dpad" >dpad
+<input id="ang0" type="radio" name="tilt" value="ang0" checked>ang0
+<input id="ang1" type="radio" name="tilt" value="ang1">ang1
+<br>
+tilt orientation:
+<input id="portlait" type="radio" name="direction" value="portlait" checked >portlait
+<input id="landscape" type="radio" name="direction" value="landscape">landscape
+<br>
+<button id="b10" style="width:150px;height:150px">10B</button>
+<button id="b11" style="width:150px;height:150px">11A</button>
+<br>
+<button id="b0" style="width:150px;height:150px">00Y</button>
+<button id="b1" style="width:150px;height:150px">01X</button>
+<br>
+<button id="b4" style="width:150px;height:150px">04L</button>
+<button id="b5" style="width:150px;height:150px">05R</button>
+<br>
+<button id="b2" style="width:150px;height:150px">02ZL</button>
+<button id="b3" style="width:150px;height:150px">03ZR</button>
+<br>
+<button id="b6" style="width:150px;height:150px">06Ls</button>
+<button id="b7" style="width:150px;height:150px">07Rs</button>
+<br>
+<button id="b8" style="width:150px;height:150px">08+</button>
+<button id="b9" style="width:150px;height:150px">09-</button>
+<br>
+<button id="up" style="width:150px;height:150px">up</button>
+<br>
+<button id="left" style="width:150px;height:150px">left</button>
+<button id="right" style="width:150px;height:150px">right</button>
+<br>
+<button id="down" style="width:150px;height:150px">down</button>
+<br>
+<div id="ori"></div>
+
+<script>
+var fps = 10;
+const GcOps = require('./gc-ops').GcOps;
+
+/* forbid enlarging by double-taps */
+var t = 0;
+document.documentElement.addEventListener('touchend', function (e) {
+  var now = new Date().getTime();
+  if ((now - t) < 350){
+    e.preventDefault();
+  }
+  t = now;
+}, false);
+
+var data = [];
+const th = 30;
+var pax =0, pay = 0;
+function deviceorientationHandler(event) {
+      let beta = event.beta;// X  -90 up +90 down
+      let gamma = event.gamma;// Y -90 left +90 right
+      //let alpha = event.alpha;// Z
+      //$('#ori').text("beta: " + beta + ", gamma: " + gamma + ", alpha: " + alpha);
+      if ($('#landscape').prop('checked')){
+        let d = beta;
+        beta = gamma;
+        gamma = -d;
+      }
+
+      if ($('#dpad').prop('checked')){
+        if (beta < -th){
+          if(gamma < -th){
+            //up left
+						data = [{"dpad": 7, "dur":-1}];
+          } else if (gamma > th){
+            // up right
+						data = [{"dpad": 9, "dur":-1}];
+          }else{
+            // up
+						data = [{"dpad": 8, "dur":-1}];
+          }
+        } else if (beta > th){
+          if(gamma < -th){
+            //down left
+						data = [{"dpad": 1, "dur":-1}];
+          } else if (gamma > th){
+            // down right
+						data = [{"dpad": 3, "dur":-1}];
+          } else{
+            //down
+						data = [{"dpad": 2, "dur":-1}];
+          }
+        } else if(gamma < -th){
+            //left
+						data = [{"dpad": 4, "dur":-1}];
+        } else if (gamma > th){
+            //right
+						data = [{"dpad": 6, "dur":-1}];
+        }else{
+            //neutral
+						data = [{"dpad": 5, "dur":-1}];
+        }
+      }else {
+        var ay = Math.floor(beta/90*127);
+        var ax = Math.floor(gamma/90*127);
+        if (ax !== pax || ay !== pay){
+          if ($('#ang0').prop('checked')){
+						data = [{"stk0": [ax,ay], "dur":-1}];
+          }else if ($('#ang1').prop('checked')){
+						data = [{"stk1": [ax,ay], "dur":-1}];
+          }
+          pax = ax;
+          pay = ay;
+        }
+      }
+}
+
+var manager = function(){
+  if (data.length !== 0){
+    send(data);
+    data = [];
+  }
+}
+setInterval(manager, 1000/fps);
+
+$(function(){
+  $('#left').bind('touchstart',function () {
+//  $('#left').mousedown(function () {
+		send([{"dpad": 4, "dur":-1}]);
+  });
+  $('#left').bind('touchend',function () {
+//  $('#left').mouseup(function () {
+		send([{"dpad": 5, "dur":-1}]);
+  });
+  $('#up').bind('touchstart',function () {
+//  $('#up').mousedown(function () {
+		send([{"dpad": 8, "dur":-1}]);
+  });
+  $('#up').bind('touchend',function () {
+//  $('#up').mouseup(function () {
+		send([{"dpad": 5, "dur":-1}]);
+  });
+  $('#right').bind('touchstart',function () {
+//  $('#right').mousedown(function () {
+		send([{"dpad": 6, "dur":-1}]);
+  });
+  $('#right').bind('touchend',function () {
+//  $('#right').mouseup(function () {
+		send([{"dpad": 5, "dur":-1}]);
+  });
+  $('#down').bind('touchstart',function () {
+//  $('#down').mousedown(function () {
+		send([{"dpad": 2, "dur":-1}]);
+  });
+  $('#down').bind('touchend',function () {
+//  $('#down').mouseup(function () {
+		send([{"dpad": 5, "dur":-1}]);
+  });
+
+  $('#b0').bind('touchstart',function () {
+//  $('#b0').mousedown(function () {
+		send([{"btn": {"0":true}, "dur":-1}]);
+  });
+  $('#b0').bind('touchend',function () {
+//  $('#b0').mouseup(function () {
+		send([{"btn": {"0":false}, "dur":-1}]);
+  });
+  $('#b1').bind('touchstart',function () {
+//  $('#b1').mousedown(function () {
+		send([{"btn": {"1":true}, "dur":-1}]);
+  });
+  $('#b1').bind('touchend',function () {
+//  $('#b1').mouseup(function () {
+		send([{"btn": {"1":false}, "dur":-1}]);
+  });
+  $('#b2').bind('touchstart',function () {
+//  $('#b2').mousedown(function () {
+		send([{"btn": {"2":true}, "dur":-1}]);
+  });
+  $('#b2').bind('touchend',function () {
+//  $('#b2').mouseup(function () {
+		send([{"btn": {"2":false}, "dur":-1}]);
+  });
+  $('#b3').bind('touchstart',function () {
+//	$('#b3').mousedown(function () {
+		send([{"btn": {"3":true}, "dur":-1}]);
+  });
+  $('#b3').bind('touchend',function () {
+//	$('#b3').mouseup(function () {
+		send([{"btn": {"3":false}, "dur":-1}]);
+  });
+  $('#b4').bind('touchstart',function () {
+//  $('#b4').mousedown(function () {
+		send([{"btn": {"4":true}, "dur":-1}]);
+  });
+  $('#b4').bind('touchend',function () {
+//  $('#b4').mouseup(function () {
+		send([{"btn": {"4":false}, "dur":-1}]);
+  });
+  $('#b5').bind('touchstart',function () {
+//  $('#b5').mousedown(function () {
+		send([{"btn": {"5":true}, "dur":-1}]);
+  });
+  $('#b5').bind('touchend',function () {
+//  $('#b5').mouseup(function () {
+		send([{"btn": {"5":false}, "dur":-1}]);
+  });
+  $('#b6').bind('touchstart',function () {
+//  $('#b6').mousedown(function () {
+		send([{"btn": {"6":true}, "dur":-1}]);
+  });
+  $('#b6').bind('touchend',function () {
+//  $('#b6').mouseup(function () {
+		send([{"btn": {"6":false}, "dur":-1}]);
+  });
+  $('#b7').bind('touchstart',function () {
+//  $('#b7').mousedown(function () {
+		send([{"btn": {"7":true}, "dur":-1}]);
+  })
+  $('#b7').bind('touchend',function () {
+//  $('#b7').mouseup(function () {
+		send([{"btn": {"7":false}, "dur":-1}]);
+  });
+  $('#b8').bind('touchstart',function () {
+//  $('#b8').mousedown(function () {
+		send([{"btn": {"8":true}, "dur":-1}]);
+  });
+  $('#b8').bind('touchend',function () {
+//  $('#b8').mouseup(function () {
+		send([{"btn": {"8":false}, "dur":-1}]);
+  });
+  $('#b9').bind('touchstart',function () {
+//  $('#b9').mousedown(function () {
+		send([{"btn": {"9":true}, "dur":-1}]);
+  });
+  $('#b9').bind('touchend',function () {
+//  $('#b9').mouseup(function () {
+		send([{"btn": {"9":false}, "dur":-1}]);
+  });
+  $('#b10').bind('touchstart',function () {
+//  $('#b10').mousedown(function () {
+		send([{"btn": {"10":true}, "dur":-1}]);
+        onfire();
+  });
+  $('#b10').bind('touchend',function () {
+//  $('#b10').mouseup(function () {
+		send([{"btn": {"10":false}, "dur":-1}]);
+  });
+  $('#b11').bind('touchstart',function () {
+//  $('#b11').mousedown(function () {
+		send([{"btn": {"11":true}, "dur":-1}]);
+  });
+  $('#b11').bind('touchend',function () {
+//  $('#b11').mouseup(function () {
+		send([{"btn": {"11":false}, "dur":-1}]);
+  });
+
+  window.addEventListener("deviceorientation", deviceorientationHandler);
+});
+
+function send(gc_sentence){
+  // let binary_sentence = [];
+  // let total_bytes = 0;
+  // for (let gc_word of gc_sentence){
+  //   var bytes = GcOps.toBytes(gc_word);
+	// 	binary_sentence = binary_sentence.concat(Array.from(bytes));
+  // }
+  send(gc_sentence);
+}
+
+</script>
+</body>
+</html>
