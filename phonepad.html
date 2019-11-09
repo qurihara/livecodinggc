@@ -2,14 +2,16 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
   <script src="./js/util.js"></script>
   <script src="./js/ws.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/ua-parser-js@0/dist/ua-parser.min.js"></script>
+  <script src="https://dz.plala.jp/svr/iOSdeviceorientationCheck.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://dz.plala.jp/svr/iOSdeviceorientationCheck.css">
 </head>
 <body style="-webkit-touch-callout:none;-webkit-user-select:none;">
 
 <h3>GameControllerizer phone-pad</h3>
-<button id="request_permission">activate tilt</button>
 tilt used as:
   <input id="dpad" type="radio" name="tilt" value="dpad" >dpad
 <input id="ang0" type="radio" name="tilt" value="ang0" checked>ang0
@@ -47,22 +49,6 @@ tilt orientation:
 <div id="ori"></div>
 
 <script>
-$('#request_permission').on('click', function() {
-  if (
-    DeviceMotionEvent &&
-    DeviceMotionEvent.requestPermission &&
-    typeof DeviceMotionEvent.requestPermission === 'function'
-  ) {
-    DeviceMotionEvent.requestPermission();
-  }
-  if (
-    DeviceOrientationEvent &&
-    DeviceOrientationEvent.requestPermission &&
-    typeof DeviceOrientationEvent.requestPermission === 'function'
-  ) {
-    DeviceOrientationEvent.requestPermission();
-  }
-})
 var fps = 10;
 //const GcOps = require('./gc-ops').GcOps;
 
