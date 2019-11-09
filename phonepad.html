@@ -9,7 +9,7 @@
 <body style="-webkit-touch-callout:none;-webkit-user-select:none;">
 
 <h3>GameControllerizer phone-pad</h3>
-<button id="request_permission()">activate tilt</button>
+<button id="request_permission">activate tilt</button>
 tilt used as:
   <input id="dpad" type="radio" name="tilt" value="dpad" >dpad
 <input id="ang0" type="radio" name="tilt" value="ang0" checked>ang0
@@ -47,7 +47,7 @@ tilt orientation:
 <div id="ori"></div>
 
 <script>
-$('.request_permission').on('click', function() {
+$('#request_permission').on('click', function() {
   if (
     DeviceMotionEvent &&
     DeviceMotionEvent.requestPermission &&
