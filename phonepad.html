@@ -133,134 +133,203 @@ var manager = function(){
 setInterval(manager, 1000/fps);
 
 $(function(){
+  //for smartphone
   $('#left').bind('touchstart',function () {
-//  $('#left').mousedown(function () {
 		send([{"dpad": 4, "dur":-1}]);
   });
   $('#left').bind('touchend',function () {
-//  $('#left').mouseup(function () {
 		send([{"dpad": 5, "dur":-1}]);
   });
   $('#up').bind('touchstart',function () {
-//  $('#up').mousedown(function () {
 		send([{"dpad": 8, "dur":-1}]);
   });
   $('#up').bind('touchend',function () {
-//  $('#up').mouseup(function () {
 		send([{"dpad": 5, "dur":-1}]);
   });
   $('#right').bind('touchstart',function () {
-//  $('#right').mousedown(function () {
 		send([{"dpad": 6, "dur":-1}]);
   });
   $('#right').bind('touchend',function () {
-//  $('#right').mouseup(function () {
 		send([{"dpad": 5, "dur":-1}]);
   });
   $('#down').bind('touchstart',function () {
-//  $('#down').mousedown(function () {
 		send([{"dpad": 2, "dur":-1}]);
   });
   $('#down').bind('touchend',function () {
-//  $('#down').mouseup(function () {
 		send([{"dpad": 5, "dur":-1}]);
   });
 
   $('#b0').bind('touchstart',function () {
-//  $('#b0').mousedown(function () {
 		send([{"btn": {"0":true}, "dur":-1}]);
   });
   $('#b0').bind('touchend',function () {
-//  $('#b0').mouseup(function () {
 		send([{"btn": {"0":false}, "dur":-1}]);
   });
   $('#b1').bind('touchstart',function () {
-//  $('#b1').mousedown(function () {
 		send([{"btn": {"1":true}, "dur":-1}]);
   });
   $('#b1').bind('touchend',function () {
-//  $('#b1').mouseup(function () {
 		send([{"btn": {"1":false}, "dur":-1}]);
   });
   $('#b2').bind('touchstart',function () {
-//  $('#b2').mousedown(function () {
 		send([{"btn": {"2":true}, "dur":-1}]);
   });
   $('#b2').bind('touchend',function () {
-//  $('#b2').mouseup(function () {
 		send([{"btn": {"2":false}, "dur":-1}]);
   });
   $('#b3').bind('touchstart',function () {
-//	$('#b3').mousedown(function () {
 		send([{"btn": {"3":true}, "dur":-1}]);
   });
   $('#b3').bind('touchend',function () {
-//	$('#b3').mouseup(function () {
 		send([{"btn": {"3":false}, "dur":-1}]);
   });
   $('#b4').bind('touchstart',function () {
-//  $('#b4').mousedown(function () {
 		send([{"btn": {"4":true}, "dur":-1}]);
   });
   $('#b4').bind('touchend',function () {
-//  $('#b4').mouseup(function () {
 		send([{"btn": {"4":false}, "dur":-1}]);
   });
   $('#b5').bind('touchstart',function () {
-//  $('#b5').mousedown(function () {
 		send([{"btn": {"5":true}, "dur":-1}]);
   });
   $('#b5').bind('touchend',function () {
-//  $('#b5').mouseup(function () {
 		send([{"btn": {"5":false}, "dur":-1}]);
   });
   $('#b6').bind('touchstart',function () {
-//  $('#b6').mousedown(function () {
 		send([{"btn": {"6":true}, "dur":-1}]);
   });
   $('#b6').bind('touchend',function () {
-//  $('#b6').mouseup(function () {
 		send([{"btn": {"6":false}, "dur":-1}]);
   });
   $('#b7').bind('touchstart',function () {
-//  $('#b7').mousedown(function () {
 		send([{"btn": {"7":true}, "dur":-1}]);
   })
   $('#b7').bind('touchend',function () {
-//  $('#b7').mouseup(function () {
 		send([{"btn": {"7":false}, "dur":-1}]);
   });
   $('#b8').bind('touchstart',function () {
-//  $('#b8').mousedown(function () {
 		send([{"btn": {"8":true}, "dur":-1}]);
   });
   $('#b8').bind('touchend',function () {
-//  $('#b8').mouseup(function () {
 		send([{"btn": {"8":false}, "dur":-1}]);
   });
   $('#b9').bind('touchstart',function () {
-//  $('#b9').mousedown(function () {
 		send([{"btn": {"9":true}, "dur":-1}]);
   });
   $('#b9').bind('touchend',function () {
-//  $('#b9').mouseup(function () {
 		send([{"btn": {"9":false}, "dur":-1}]);
   });
   $('#b10').bind('touchstart',function () {
-//  $('#b10').mousedown(function () {
 		send([{"btn": {"10":true}, "dur":-1}]);
         onfire();
   });
   $('#b10').bind('touchend',function () {
-//  $('#b10').mouseup(function () {
 		send([{"btn": {"10":false}, "dur":-1}]);
   });
   $('#b11').bind('touchstart',function () {
-//  $('#b11').mousedown(function () {
 		send([{"btn": {"11":true}, "dur":-1}]);
   });
   $('#b11').bind('touchend',function () {
-//  $('#b11').mouseup(function () {
+		send([{"btn": {"11":false}, "dur":-1}]);
+  });
+
+  // for pc
+  $('#left').mousedown(function () {
+		send([{"dpad": 4, "dur":-1}]);
+  });
+  $('#left').mouseup(function () {
+		send([{"dpad": 5, "dur":-1}]);
+  });
+  $('#up').mousedown(function () {
+		send([{"dpad": 8, "dur":-1}]);
+  });
+  $('#up').mouseup(function () {
+		send([{"dpad": 5, "dur":-1}]);
+  });
+  $('#right').mousedown(function () {
+		send([{"dpad": 6, "dur":-1}]);
+  });
+  $('#right').mouseup(function () {
+		send([{"dpad": 5, "dur":-1}]);
+  });
+  $('#down').mousedown(function () {
+		send([{"dpad": 2, "dur":-1}]);
+  });
+  $('#down').mouseup(function () {
+		send([{"dpad": 5, "dur":-1}]);
+  });
+
+  $('#b0').mousedown(function () {
+		send([{"btn": {"0":true}, "dur":-1}]);
+  });
+  $('#b0').mouseup(function () {
+		send([{"btn": {"0":false}, "dur":-1}]);
+  });
+  $('#b1').mousedown(function () {
+		send([{"btn": {"1":true}, "dur":-1}]);
+  });
+  $('#b1').mouseup(function () {
+		send([{"btn": {"1":false}, "dur":-1}]);
+  });
+  $('#b2').mousedown(function () {
+		send([{"btn": {"2":true}, "dur":-1}]);
+  });
+  $('#b2').mouseup(function () {
+		send([{"btn": {"2":false}, "dur":-1}]);
+  });
+	$('#b3').mousedown(function () {
+		send([{"btn": {"3":true}, "dur":-1}]);
+  });
+	$('#b3').mouseup(function () {
+		send([{"btn": {"3":false}, "dur":-1}]);
+  });
+  $('#b4').mousedown(function () {
+		send([{"btn": {"4":true}, "dur":-1}]);
+  });
+  $('#b4').mouseup(function () {
+		send([{"btn": {"4":false}, "dur":-1}]);
+  });
+  $('#b5').mousedown(function () {
+		send([{"btn": {"5":true}, "dur":-1}]);
+  });
+  $('#b5').mouseup(function () {
+		send([{"btn": {"5":false}, "dur":-1}]);
+  });
+  $('#b6').mousedown(function () {
+		send([{"btn": {"6":true}, "dur":-1}]);
+  });
+  $('#b6').mouseup(function () {
+		send([{"btn": {"6":false}, "dur":-1}]);
+  });
+  $('#b7').mousedown(function () {
+		send([{"btn": {"7":true}, "dur":-1}]);
+  })
+  $('#b7').mouseup(function () {
+		send([{"btn": {"7":false}, "dur":-1}]);
+  });
+  $('#b8').mousedown(function () {
+		send([{"btn": {"8":true}, "dur":-1}]);
+  });
+  $('#b8').mouseup(function () {
+		send([{"btn": {"8":false}, "dur":-1}]);
+  });
+  $('#b9').mousedown(function () {
+		send([{"btn": {"9":true}, "dur":-1}]);
+  });
+  $('#b9').mouseup(function () {
+		send([{"btn": {"9":false}, "dur":-1}]);
+  });
+  $('#b10').mousedown(function () {
+		send([{"btn": {"10":true}, "dur":-1}]);
+        onfire();
+  });
+  $('#b10').mouseup(function () {
+		send([{"btn": {"10":false}, "dur":-1}]);
+  });
+  $('#b11').mousedown(function () {
+		send([{"btn": {"11":true}, "dur":-1}]);
+  });
+  $('#b11').mouseup(function () {
 		send([{"btn": {"11":false}, "dur":-1}]);
   });
 
