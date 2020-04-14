@@ -1,7 +1,7 @@
 const obniz_id = "xxxx-xxxx";
 const oid = getQueryParam("id", obniz_id);
 
-var obniz = new Obniz(oid);
+var obniz = new Obniz.M5StickC(oid);
 const GcOps = require('./gc-ops').GcOps;
 obniz.onconnect = async function () {
 		obniz.uart0.start({tx: 33, rx: 32});
