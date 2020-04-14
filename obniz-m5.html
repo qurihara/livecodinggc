@@ -1,0 +1,96 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>live coding GameControllerizer</title>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css">
+
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.3/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+    <!-- Bootstrap -->
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <link rel="stylesheet" href="./codemirror/lib/codemirror.css">
+    <link rel="stylesheet" href="./css/main.css">
+
+    <script src="./codemirror/lib/codemirror.js"></script>
+    <script src="./codemirror/mode/javascript/javascript.js"></script>
+    <script src="./codemirror/addon/selection/active-line.js"></script>
+    <script src="./codemirror/addon/edit/matchbrackets.js"></script>
+
+    <script src="https://unpkg.com/obniz@3.4.0-beta.0/obniz.js" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://gamecontrollerizer.github.io/GcOpsObniz/gc-ops_browser.js"  crossorigin="anonymous"></script>
+
+    <script src="./js/main.js"></script>
+    <script src="./js/util.js"></script>
+    <script src="./js/obniz-m5.js"></script>
+
+  </head>
+  <body>
+    <div id= "youtubegrid"class="container-fixed">
+
+    </div>
+    <div id= "youtubegrid-state" class="container-fixed">
+
+    </div>
+
+<!--  <div id="resizable" class="ui-widget-content">
+      <div class="ui-widget-header">code editor</div>
+      -->
+      <div id= "code-container" class="container-fixed">
+
+      <div class="youtube-result">
+        <button class = "search-result-close-button btn btn-default">CLOSE</button>
+        <div class = "youtube-result-list">
+        </div>
+      </div>
+
+<textarea id="code" name="code">
+// press shift+enter to run selected code (or each line if not selected)
+// press alt+enter to go to the documentation.
+// inspired and folked from https://github.com/paum3/livecodingyoutube2.github.io
+// here is some example code, run line by line and see what happens.
+
+p3 = {"btn":[4]}
+p2 = {"btn":[2]}
+p1 = {"btn":[3]}
+k3 = {"btn":[5]}
+k2 = {"btn":[0]}
+k1 = {"btn":[1]}
+$x(faceL = [{"cfg_input": {"dpad": 1}}])
+$x(faceR = [{"cfg_input": {"dpad": 0}}])
+$x(guard = [dpadf(1,-1)])
+$x(neutral = [dpadf(5,-1)])
+$x(hado = [dpadf(2,2),dpadf(3,2),dpadf(6,2),btnf(4,2)])
+id = loop(hado, 60)
+unloop(id)
+$x(combo1= [dpad(9),f(40),btn(5),f(25),dpad(2),btn(0),f(5),hado])
+$x(sonic = [dpad(6),btnf(4,2)])
+$x(summer = [dpad(8),btnf(5,2)])
+
+
+</textarea>
+
+    </div>
+    <div class = "go-back-editor">
+          <button class = "go-back-button btn btn-default">Go Back</button>
+        </div>
+
+
+
+  </body>
+</html>
